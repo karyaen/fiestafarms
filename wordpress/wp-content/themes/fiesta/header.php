@@ -167,6 +167,7 @@ if (is_front_page()) {
 	<li<?php if (is_page('Resources')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/resources">Resources</a></li>
 	<li<?php if (is_page('Philosphy')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/philosophy">Philosophy</a></li>
 	<li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
+  <li<?php if (is_page('now-hiring')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/now-hiring">Now Hiring</a></li>
 	<li class="fiestagardens" <?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a style="color: #a2bf37; font-weight:bold;" href="<?php bloginfo('url') ?>/category/garden">Fiesta Gardens</a></li>
 	
       <?php /* wp_list_pages("title_li=&depth=1&exclude=2,658,1552,1554,4661,5562"); * /?>
