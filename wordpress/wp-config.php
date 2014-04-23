@@ -19,7 +19,7 @@
 define('DB_NAME', 'wp_fiesta');
 
 /** MySQL database username */
-define('DB_USER', 'user_fiesta');
+define('DB_USER', 'wp_user');
 
 /** MySQL database password */
 define('DB_PASSWORD', 'password');
@@ -32,8 +32,6 @@ define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
-define('WP_HOME','http://fiesta.dev');
-define('WP_SITEURL','http://fiesta.dev/wordpress/');
 //define('WP_DEBUG', true);
 
 /**#@+
