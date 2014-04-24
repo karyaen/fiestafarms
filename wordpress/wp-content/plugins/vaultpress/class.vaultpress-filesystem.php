@@ -6,10 +6,6 @@ class VaultPress_Filesystem {
 	var $dir  = null;
 	var $keys = array( 'ino', 'uid', 'gid', 'size', 'mtime', 'blksize', 'blocks' );
 
-	function VaultPress_Filesystem() {
-		$this->__construct();
-	}
-
 	function __construct() {
 	}
 
@@ -93,11 +89,12 @@ class VaultPress_Filesystem {
 			array_pop( $dir );
 			$dir = implode( DIRECTORY_SEPARATOR, $dir );
 		}
+		$rval['full_path'] = realpath( $file );
 		$rval['path'] = str_replace( $dir, '', $file );
 		return $rval;
 	}
 
-	function ls( $what, $md5=false, $sha1=false, $limit=null, $offset=null ) {
+	function ls( $what, $md5=false, $sha1=false, $limit=null, $offset=null, $full_list=false ) {
 		clearstatcache();
 		$path = realpath($this->dir . $what);
 		$dir = $this->dir;
@@ -116,6 +113,8 @@ class VaultPress_Filesystem {
 			$orig_limit = (int)$limit;
 			$limit = $offset + (int)$limit;
 			foreach ( (array)$this->scan_dir( $path ) as $i ) {
+				if ( !$full_list && !$this->should_backup_file( $i ) )
+					continue;
 				$current++;
 				if ( $offset >= $current )
 					continue;
@@ -130,6 +129,20 @@ class VaultPress_Filesystem {
 			}
 			return $entries;
 		}
+	}
+
+	function should_backup_file( $filepath ) {
+		$vp = VaultPress::init();
+		if ( is_dir( $filepath ) )
+			$filepath = trailingslashit( $filepath );
+		$regex_patterns = $vp->get_should_ignore_files();
+		foreach ( $regex_patterns as $pattern ) {
+			$matches = array();
+			if ( preg_match( $pattern, $filepath, $matches ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	function validate( $file ) {

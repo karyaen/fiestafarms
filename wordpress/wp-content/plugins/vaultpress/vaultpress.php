@@ -3,7 +3,7 @@
  * Plugin Name: VaultPress
  * Plugin URI: http://vaultpress.com/?utm_source=plugin-uri&amp;utm_medium=plugin-description&amp;utm_campaign=1.0
  * Description: Protect your content, themes, plugins, and settings with <strong>realtime backup</strong> and <strong>automated security scanning</strong> from <a href="http://vaultpress.com/?utm_source=wp-admin&amp;utm_medium=plugin-description&amp;utm_campaign=1.0" rel="nofollow">VaultPress</a>. Activate, enter your registration key, and never worry again. <a href="http://vaultpress.com/help/?utm_source=wp-admin&amp;utm_medium=plugin-description&amp;utm_campaign=1.0" rel="nofollow">Need some help?</a>
- * Version: 1.4.2
+ * Version: 1.5.7
  * Author: Automattic
  * Author URI: http://vaultpress.com/?utm_source=author-uri&amp;utm_medium=plugin-description&amp;utm_campaign=1.0
  * License: GPL2+
@@ -17,12 +17,8 @@ if ( !defined( 'ABSPATH' ) )
 
 class VaultPress {
 	var $option_name    = 'vaultpress';
-	var $db_version     = 2;
-	var $plugin_version = '1.4.2';
-
-	function VaultPress() {
-		$this->__construct();
-	}
+	var $db_version     = 3;
+	var $plugin_version = '1.5.7';
 
 	function __construct() {
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
@@ -57,7 +53,7 @@ class VaultPress {
 		}
 	}
 
-	function &init() {
+	static function &init() {
 		static $instance = false;
 
 		if ( !$instance ) {
@@ -112,6 +108,12 @@ class VaultPress {
 		if ( $current_db_version < 2 ) {
 			$this->delete_option( 'timeout' );
 			$this->delete_option( 'disable_firewall' );
+			$this->update_option( 'db_version', $this->db_version );
+			$this->clear_connection();
+		}
+
+		if ( $current_db_version < 3 ) {
+			$this->update_firewall();
 			$this->update_option( 'db_version', $this->db_version );
 			$this->clear_connection();
 		}
@@ -192,32 +194,6 @@ class VaultPress {
 					add_action( $filter, array( $this, 'error_notice' ) );
 			}
 		}
-	?>
-
-		<style type="text/css">
-			#toplevel_page_vaultpress div.wp-menu-image {
-				background: url(<?php echo esc_url( $this->server_url() ); ?>images/vp-icon-sprite.png?20111216) center top no-repeat;
-				background-size: 28px 84px;
-			}
-
-			.admin-color-classic #toplevel_page_vaultpress div.wp-menu-image {
-				background-position: center -28px;
-			}
-
-			#toplevel_page_vaultpress.current div.wp-menu-image,
-			#toplevel_page_vaultpress:hover div.wp-menu-image {
-				background-position: center bottom;
-			}
-
-			@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-				#toplevel_page_vaultpress div.wp-menu-image {
-					background-image: url(<?php echo esc_url( $this->server_url() ); ?>images/vp-icon-sprite-2x.png?20111216);
-				}
-			}
-		</style>
-
-	<?php
-
 	}
 
 	function admin_menu() {
@@ -243,8 +219,10 @@ class VaultPress {
 		if ( !current_user_can( 'manage_options' ) || !is_admin() )
 			return;
 
-		// force the cache to bust every day
-		wp_enqueue_style( 'vaultpress', $this->server_url() . 'css/plugin.css' , false, date( 'Ymd' ) );
+		wp_enqueue_style( 'vaultpress-nav', plugins_url( '/nav-styles.css', __FILE__ ), false, date( 'Ymd' ) );
+
+		if ( isset( $_GET['page'] ) && 'vaultpress' == $_GET['page'] )
+			wp_enqueue_style( 'vaultpress', plugins_url( '/styles.css', __FILE__ ), false, date( 'Ymd' ) );
 	}
 
 	// display a security threat notice if one exists
@@ -349,7 +327,8 @@ class VaultPress {
 		if ( !isset( $_GET['page'] ) || 'vaultpress' != $_GET['page'] )
 			$error_message .= ' ' . sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=vaultpress' ), __( 'Visit&nbsp;the&nbsp;VaultPress&nbsp;page' , 'vaultpress') );
 
-		if ( !empty( $error_message ) )
+		$screen = get_current_screen();
+		if ( !in_array( $screen->id, array( 'about', 'about-user', 'about-network' ) ) && !empty( $error_message ) )
 			$this->ui_message( $error_message, 'error' );
 	}
 
@@ -534,6 +513,14 @@ class VaultPress {
 				$val = $this->get_option_name_ignore( true );
 				update_option( '_vp_config_option_name_ignore', $val );
 				break;
+			case '_vp_config_post_meta_name_ignore':
+				$val = $this->get_post_meta_name_ignore( true );
+				update_option( '_vp_config_post_meta_name_ignore', $val );
+				break;
+			case '_vp_config_should_ignore_files':
+				$val = $this->get_should_ignore_files( true );
+				update_option( '_vp_config_should_ignore_files', $val );
+				break;
 		}
 		return $val;
 	}
@@ -552,6 +539,26 @@ class VaultPress {
 		if ( $return_defaults )
 			return $defaults;
 		$ignore_names = $this->get_config( '_vp_config_option_name_ignore' );
+		return array_unique( array_merge( $defaults, $ignore_names ) );
+	}
+
+	// post meta name patterns to ignore
+	function get_post_meta_name_ignore( $return_defaults = false ) {
+		$defaults = array(
+			'pvc_views'
+		);
+		if ( $return_defaults )
+			return $defaults;
+		$ignore_names = $this->get_config( '_vp_config_post_meta_name_ignore' );
+		return array_unique( array_merge( $defaults, $ignore_names ) );
+	}
+
+	// file name patterns to ignore
+	function get_should_ignore_files( $return_defaults = false ) {
+		$defaults = array();
+		if ( $return_defaults )
+			return $defaults;
+		$ignore_names = (array) $this->get_config( '_vp_config_should_ignore_files' );
 		return array_unique( array_merge( $defaults, $ignore_names ) );
 	}
 
@@ -704,10 +711,16 @@ class VaultPress {
 
 	// Handle Notifying VaultPress of PostMeta changes via newfangled metadata functions
 	function postmeta_insert_handler( $meta_id, $post_id, $meta_key, $meta_value='' ) {
+		if ( in_array( $meta_key, $this->get_post_meta_name_ignore() ) )
+			return;	
+
 		$this->add_ping( 'db', array( 'postmeta' => $meta_id ) );
 	}
 
 	function postmeta_modification_handler( $meta_id, $object_id, $meta_key, $meta_value ) {
+		if ( in_array( $meta_key, $this->get_post_meta_name_ignore() ) )
+			return;	
+
 		if ( !is_array( $meta_id ) )
 			return $this->add_ping( 'db', array( 'postmeta' => $meta_id ) );
 		foreach ( $meta_id as $id ) {
@@ -716,7 +729,10 @@ class VaultPress {
 	}
 
 	// Handle Notifying VaultPress of PostMeta changes via old school cherypicked hooks
-	function postmeta_action_handler( $meta_id ) {
+	function postmeta_action_handler( $meta_id, $post_id = null, $meta_key = null ) {
+		if ( in_array( $meta_key, $this->get_post_meta_name_ignore() ) )
+			return;
+	
 		if ( !is_array($meta_id) )
 			return $this->add_ping( 'db', array( 'postmeta' => $meta_id ) );
 		foreach ( $meta_id as $id )
@@ -725,8 +741,7 @@ class VaultPress {
 
 	function verify_table( $table ) {
 		global $wpdb;
-		$table = $wpdb->escape( $table );
-		$status = $wpdb->get_row( "SHOW TABLE STATUS WHERE Name = '$table'" );
+		$status = $wpdb->get_row( $wpdb->prepare( "SHOW TABLE STATUS WHERE Name = %s", $table ) );
 		if ( !$status || !$status->Update_time || !$status->Comment || $status->Engine != 'MyISAM' )
 			return true;
 		if ( preg_match( '/([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})/', $status->Comment, $m ) )
@@ -875,27 +890,61 @@ class VaultPress {
 		) );
 	}
 
-	function update_firewall() {
-		$args     = array( 'timeout' => $this->get_option( 'timeout' ) );
+	function request_firewall_update( $external_services = false ) {
+		$args     = array( 'timeout' => $this->get_option( 'timeout' ), 'sslverify' => true );
 		$hostname = $this->get_option( 'hostname' );
-		$data     = wp_remote_get( "http://$hostname/service-ips", $args );
+		$path = $external_services ? 'service-ips-external' : 'service-ips';
 
-		if ( $data )
-			$data = @unserialize( $data['body'] );
+		$data = false;
+		$https_error = null;
+		$retry = 2;
+		do {
+			$retry--;
+			$protocol = 'http'; 
+			$args['sslverify'] = 'https' == $protocol ? true : false;
+			$r = wp_remote_get( $url=sprintf( "%s://%s/%s", $protocol, $hostname, $path ), $args );
+			if ( 200 == wp_remote_retrieve_response_code( $r ) ) {
+				if ( 99 == $this->get_option( 'connection_error_code' ) )
+					$this->clear_connection();
+				$data = @unserialize( wp_remote_retrieve_body( $r ) );
+				break;
+			}
+			if ( 'https' == $protocol )
+				$https_error = $r;
+			usleep( 100 );
+		} while( $retry > 0 );
 
+		$r_code = wp_remote_retrieve_response_code( $https_error );
+		if ( 0 == $retry && 200 != $r_code ) {
+			$error_message = sprintf( 'Unexpected HTTP response code %s', $r_code );
+			if ( false === $r_code )
+				$error_message = 'Unable to find an HTTP transport that supports SSL verification';
+			elseif ( is_wp_error( $https_error ) )
+				$error_message = $https_error->get_error_message();
+			
+			$this->update_option( 'connection', time() );
+			$this->update_option( 'connection_error_code', 99 );
+			$this->update_option( 'connection_error_message', sprintf( __('Warning: The VaultPress plugin is using an insecure protocol because it cannot verify the identity of the VaultPress server. Please contact your hosting provider, and ask them to check that SSL certificate verification is correctly configured on this server. The request failed with the following error: "%s". If you&rsquo;re still having issues please <a href="%1$s">contact the VaultPress&nbsp;Safekeepers</a>.', 'vaultpress' ), esc_html( $error_message ), 'http://vaultpress.com/contact/' ) );
+		}
+
+		return $data;
+	}
+
+	function update_firewall() {
+		$data = $this->request_firewall_update();
 		if ( $data ) {
 			$newval = array( 'updated' => time(), 'data' => $data );
 			$this->update_option( 'service_ips', $newval );
 		}
 
-		// update cloudflare IP address list
-		$cf_data = wp_remote_retrieve_body( wp_remote_get( 'https://www.cloudflare.com/ips-v4', $args ) );
-		if ( $cf_data && !empty( $cf_data['body'] ) ) {
-			$this->update_option( 'cloudflare_ips', array(
-				'updated' => time(),
-				'data' => explode( "\n", $cf_data['body'] )
-			) );
+		$external_data = $this->request_firewall_update( true );
+		if ( $external_data ) {
+			$external_newval = array( 'updated' => time(), 'data' => $external_data );
+			update_option( 'vaultpress_service_ips_external', $external_newval );
 		}
+
+		if ( !empty( $data ) && !empty( $external_data ) )
+			$data = array_merge( $data, $external_data );
 
 		if ( $data ) {
 			return $data;
@@ -1224,11 +1273,14 @@ JS;
 						$http_modules = apache_get_modules();
 					else
 						$http_modules =  null;
-					if ( function_exists( 'apache_get_version' ) )
-						$httpd = array_shift( explode( ' ', apache_get_version() ) );
+					if ( function_exists( 'apache_get_version' ) ) {
+						$version_pieces = explode( ' ', apache_get_version() );
+						$httpd = array_shift( $version_pieces );
+					}
 				}
 				if ( !$httpd && 0 === stripos( $_SERVER['SERVER_SOFTWARE'], 'Apache' ) ) {
-					$httpd = array_shift( explode( ' ', $_SERVER['SERVER_SOFTWARE'] ) );
+					$software_pieces = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
+					$httpd = array_shift( $software_pieces );
 					if ( isset( $_POST['apache_modules'] ) && $_POST['apache_modules'] == 1 )
 						$http_modules =  'unknown';
 					else
@@ -1416,7 +1468,8 @@ JS;
 					$bdb->attach( base64_decode( $_POST['table'] ), $parse_create_table );
 				}
 
-				switch ( array_pop( explode( ':', $_GET['action'] ) ) ) {
+				$action_pieces = explode( ':', $_GET['action'] );
+				switch ( array_pop( $action_pieces ) ) {
 					case 'diff':
 						if ( !$signatures ) die( 'naughty naughty' );
 						// encoded because mod_security sees this as an SQL injection attack
@@ -1441,7 +1494,8 @@ JS;
 				if ( isset( $_POST['table'] ) )
 					$bdb->attach( base64_decode( $_POST['table'] ) );
 
-				switch ( array_pop( explode( ':', $_GET['action'] ) ) ) {
+				$action_pieces = explode( ':', $_GET['action'] );
+				switch ( array_pop( $action_pieces ) ) {
 					default:
 						die( "naughty naughty" );
 					case 'tables':
@@ -1450,6 +1504,12 @@ JS;
 						$this->response( $bdb->explain() );
 					case 'show_create':
 						$this->response( $bdb->show_create() );
+				}
+				break;
+			case 'db:restore':
+				if ( !empty( $_POST['path'] ) && isset( $_POST['hash'] ) ) {
+					$delete = !isset( $_POST['remove'] ) || $_POST['remove'] && 'false' !== $_POST['remove'];
+					$this->response( $bdb->restore( $_POST['path'], $_POST['hash'], $delete ) );
 				}
 				break;
 			case 'themes:active':
@@ -1463,7 +1523,8 @@ JS;
 			case 'plugins:stat':     case 'uploads:stat':     case 'themes:stat':     case 'content:stat':     case 'root:stat':
 			case 'plugins:get':      case 'uploads:get':      case 'themes:get':      case 'content:get':      case 'root:get':
 
-				$bfs->want( array_shift( explode( ':', $_GET['action'] ) ) );
+				$action_pieces = explode( ':', $_GET['action'] );
+				$bfs->want( array_shift( $action_pieces ) );
 
 				if ( isset( $_POST['path'] ) )
 					$path = $_POST['path'];
@@ -1498,7 +1559,13 @@ JS;
 				else
 					$recursive = false;
 
-				switch ( array_pop( explode( ':', $_GET['action'] ) ) ) {
+				if ( isset( $_POST['full_list'] ) )
+					$full_list = (bool)$_POST['full_list'];
+				else
+					$full_list = false;
+
+				$action_pieces = explode( ':', $_GET['action'] );
+				switch ( array_pop( $action_pieces ) ) {
 					default:
 						die( "naughty naughty" );
 					case 'checksum':
@@ -1511,7 +1578,7 @@ JS;
 					case 'get':
 						$bfs->fdump( $bfs->dir.$path );
 					case 'ls':
-						$this->response( $bfs->ls( $path, $md5, $sha1, $limit, $offset ) );
+						$this->response( $bfs->ls( $path, $md5, $sha1, $limit, $offset, $full_list ) );
 				}
 				break;
 			case 'config:get':
@@ -1612,9 +1679,14 @@ JS;
 
 	function validate_api_signature() {
 		global $__vp_validate_error;
-		if ( !empty( $_POST['signature'] ) )
-			$sig = (string) $_POST['signature'];
-		else {
+		if ( !empty( $_POST['signature'] ) ) {
+			if ( is_string( $_POST['signature'] ) ) {
+				$sig = $_POST['signature'];
+			} else {
+				$__vp_validate_error = array( 'error' => 'invalid_signature_format' );
+				return false;
+			}
+		} else {
 			$__vp_validate_error = array( 'error' => 'no_signature' );
 			return false;
 		}
@@ -1626,6 +1698,9 @@ JS;
 		}
 		if ( !$this->get_option( 'disable_firewall' ) ) {
 			$rxs = $this->get_option( 'service_ips' );
+			$service_ips_external = get_option( 'vaultpress_service_ips_external' );
+			if ( !empty( $rxs['data'] ) && !empty( $service_ips_external['data'] ) )
+				$rxs['data'] = array_merge( $rxs['data'], $service_ips_external['data'] );
 			if ( $rxs ) {
 				$timeout = time() - 86400;
 				if ( $rxs ) {
@@ -1664,7 +1739,7 @@ JS;
 		if ( $sig[0] === $signature )
 			return true;
 
-		$__vp_validate_error = array( 'error' => 'invalid_signed_data', 'detail' => array( 'actual' => $sig[0], 'needed' => $signature ) );
+		$__vp_validate_error = array( 'error' => 'invalid_signed_data' );
 		return false;
 	}
 
@@ -1815,7 +1890,8 @@ JS;
 				}
 				return;
 			case 'db':
-				$subtype = array_shift( array_keys( $data ) );
+				$_keys = array_keys( $data );
+				$subtype = array_shift( $_keys );
 				if ( !isset( $vaultpress_pings[$type][$subtype] ) )
 					$vaultpress_pings[$type][$subtype] = array();
 				if ( in_array( $data, $vaultpress_pings[$type][$subtype] ) )
@@ -2032,9 +2108,9 @@ JS;
 		add_action( 'updated_post_meta', array( $this, 'postmeta_modification_handler' ), 10, 4 );
 		add_action( 'delete_post_meta',  array( $this, 'postmeta_modification_handler' ), 10, 4 );
 		add_action( 'deleted_post_meta', array( $this, 'postmeta_modification_handler' ), 10, 4 );
-		add_action( 'added_postmeta',    array( $this, 'postmeta_action_handler' ) );
-		add_action( 'update_postmeta',   array( $this, 'postmeta_action_handler' ) );
-		add_action( 'delete_postmeta',   array( $this, 'postmeta_action_handler' ) );
+		add_action( 'added_postmeta',    array( $this, 'postmeta_action_handler' ), 10, 3 );
+		add_action( 'update_postmeta',   array( $this, 'postmeta_action_handler' ), 10, 3 );
+		add_action( 'delete_postmeta',   array( $this, 'postmeta_action_handler' ), 10, 3 );
 
 		// Links
 		add_action( 'edit_link',   array( $this, 'link_action_handler' ) );

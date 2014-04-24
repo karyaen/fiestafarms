@@ -1,10 +1,6 @@
 <?php
 
 class VaultPress_Hotfixes {
-	function VaultPress_Hotfixes() {
-		$this->__construct();
-	}
-
 	function __construct() {
 		global $wp_version;
 
@@ -83,6 +79,43 @@ class VaultPress_Hotfixes {
 			add_filter( 'editable_slug', 'esc_textarea' ); 
 
 		add_filter( 'get_pagenum_link', array( $this, 'get_pagenum_link' ) );
+
+		add_filter( 'jetpack_xmlrpc_methods', array( $this, 'disable_jetpack_xmlrpc_methods_293' ), 20, 3 );
+		add_filter( 'xmlrpc_methods', array( $this, 'disable_xmlrpc_methods_293' ), 20 );
+	}
+
+	function disable_jetpack_xmlrpc_methods_293( $jetpack_methods, $core_methods, $user = false ) {
+		if ( $this->needs_jetpack_293_fix() && !$user )
+			unset( $jetpack_methods['jetpack.jsonAPI'], $jetpack_methods['jetpack.verifyAction'] );
+		return $jetpack_methods;
+	}
+
+	function disable_xmlrpc_methods_293( $core_methods ) {
+		if ( $this->needs_jetpack_293_fix() )
+			unset( $core_methods['jetpack.verifyAction'] );
+		return $core_methods;
+	}
+
+	function needs_jetpack_293_fix() {
+		if ( ! defined( 'JETPACK__VERSION' ) )
+			return false;
+		$secure_jetpacks = array(
+			'1.9' => '1.9.3',
+			'2.0' => '2.0.5',
+			'2.1' => '2.1.3',
+			'2.2' => '2.2.6',
+			'2.3' => '2.3.6',
+			'2.4' => '2.4.3',
+			'2.5' => '2.5.1',
+			'2.6' => '2.6.2',
+			'2.7' => '2.7.1',
+			'2.8' => '2.8.1',
+			'2.9' => '2.9.3',
+		);
+		$float_version = (string) floatval( JETPACK__VERSION );
+		if ( ! isset( $secure_jetpacks[ $float_version ] ) )
+			return false;
+		return version_compare( JETPACK__VERSION, $secure_jetpacks[ $float_version ], '<' );
 	}
 
 	function r21138_xmlrpc_edit_posts( $caps, $cap, $user_id, $args ) {
@@ -237,7 +270,8 @@ class VaultPress_Hotfixes {
 			return $query;
 
 		// Pull the post_id which is the last thing in the origin query, after a space, no quotes
-		$post_id = array_pop( explode( " ", $query ) );
+		$query_parts = explode( " ", $query );
+		$post_id = array_pop( $query_parts );
 
 		// Chop off the beginning and end of the original query to get our unsanitized $tb_ping
 		$tb_ping = substr(
