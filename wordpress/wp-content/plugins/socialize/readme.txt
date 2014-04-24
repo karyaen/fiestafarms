@@ -1,10 +1,10 @@
 === Socialize ===
 Contributors: JonBishop
 Donate link: http://www.jonbishop.com/donate/
-Tags:  socialize, bookmark, post, posts, admin, page, digg, facebook, twitter, pinterest, buffer, bufferapp, delicious, digg, seo, button, google, sharing, stumbleupon, posting, saving, sharethis, share, bookmarking, shareaholic, sharing buttons menu, social, social bookmarking, reddit, sexysharing buttons, mu, sphinn, dzone, meta, linkedin, + one, +1, plus 1, plus one, addthis, addtoany, google plus, buddypress
+Tags:  socialize, bookmark, post, posts, admin, page, digg, facebook, twitter, pinterest, buffer, bufferapp, delicious, digg, seo, button, google, sharing, stumbleupon, posting, saving, sharethis, share, bookmarking, shareaholic, sharing buttons menu, social, social bookmarking, reddit, sexysharing buttons, mu, sphinn, dzone, meta, linkedin, + one, +1, plus 1, plus one, addthis, addtoany, google plus, buddypress, pocket
 Requires at least: 2.7
-Tested up to: 3.5.1
-Stable tag: 2.2.3
+Tested up to: 3.8
+Stable tag: 2.3
 
 Provides an easy way to selectively add actionable social sharing buttons to your posts content or below the post in a 'Call To Action' box.
 
@@ -78,7 +78,15 @@ Because you can only display as many buttons that will fit within the width of t
 
 == Changelog ==
 
-The current version is 2.2.3 (2013.02.09)
+The current version is 2.3 (2013.10.01)
+
+= 2.3 (2013.10.01) =
+* Removed Digg button
+* Fixed Pinterest button
+* Added rules to fix new Pinterest counter values
+* Added Bitcoin as a donation option
+* Added Pocket button
+* Make Socialize admin responsive
 
 = 2.2.3 (2013.02.09) =
 * Added strip_tags() to og:title

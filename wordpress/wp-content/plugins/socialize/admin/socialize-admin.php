@@ -224,11 +224,14 @@ class SocializeAdmin {
     //=============================================
     function socialize_show_donate() {
         $content = '<p><strong>Looking for a karmic boost?</strong><br />
-		If you like this plugin please consider donating a few bucks to support its development. If you can\'t spare any change you can also help by giving me a good rating on WordPress.org and tweeting this plugin to your followers.
-		<ul>
-			<li><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jonbish%40gmail%2ecom&lc=US&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">Donate With PayPal</a></li>
-			<li><a target="_blank" href="http://wordpress.org/extend/plugins/socialize/">Give Me A Good Rating</a></li>
-			<li><a target="_blank" href="http://twitter.com/?status=WordPress Plugin: Selectively Add Social Bookmarks to Your Posts http://bit.ly/IlCdN (via @jondbishop)">Share On Twitter</a></li>
+		If you like this plugin please consider donating a few bucks to support its development. If you can\'t spare any change you can also help by giving me a good rating on WordPress.org and tweeting this plugin to your followers.<br />
+		<div class="socialize-coinbase">
+            <a class="coinbase-button" data-code="a2304c60cbd20f5d872adb46a824e23b" data-button-style="donation_large" href="https://coinbase.com/checkouts/a2304c60cbd20f5d872adb46a824e23b">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+        </div>
+        <ul>
+			<li><a target="_blank" class="button-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jonbish%40gmail%2ecom&lc=US&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">Donate With PayPal</a></li>
+			<li><a target="_blank" class="button-primary" href="http://wordpress.org/support/view/plugin-reviews/socialize#postform">Give Me A Good Rating</a></li>
+			<li><a target="_blank" class="button-primary" href="http://twitter.com/?status=WordPress Plugin: Selectively Add Social Bookmarks to Your Posts http://bit.ly/IlCdN (via @jondbishop)">Share On Twitter</a></li>
 		</ul></p>';
         return self::socialize_postbox('socialize-donate', 'Donate & Share', $content);
     }
@@ -491,7 +494,6 @@ class SocializeAdmin {
 
 
         $wrapped_content = "";
-        $digg_buttons_content = "";
         $twiter_buttons_content = "";
         $facebook_buttons_content = "";
         $default_content = "";
@@ -502,6 +504,7 @@ class SocializeAdmin {
         $google_plusone_buttons_content = "";
         $yahoo_buttons_content = "";
         $linkedin_buttons_content = "";
+        $pocket_buttons_content = "";
 
         if (function_exists('wp_nonce_field')) {
             $default_content .= wp_nonce_field('socialize-update-services_options', '_wpnonce', true, false);
@@ -635,13 +638,22 @@ class SocializeAdmin {
         $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-stumbleupon', 'Stumbleupon Button Settings', $stumbleupon_buttons_content);
 
         // Pinterest
-        $pinterest_buttons_content .= '<p>' . __("Choose which Pinterest button to display") . ':<br />
+        $pinterest_buttons_content .= '<p>' . __("Choose where to show the Pin count") . ':<br />
 					<select name="pinterest_counter">';
-        foreach (array('vertical', 'horizontal', 'none') as $pinterest_counter) {
-            $pinterest_buttons_content .= '<option value="' . $pinterest_counter . '" ' . selected($socialize_settings['pinterest_counter'], $pinterest_counter, false) . '>' . $pinterest_counter . '</option>';
+        foreach (array('Above the button'=>'above', 'Beside the button'=>'beside', 'Not shown'=>'none') as $pinterest_counter_key=>$pinterest_counter) {
+            $pinterest_buttons_content .= '<option value="' . $pinterest_counter . '" ' . selected($socialize_settings['pinterest_counter'], $pinterest_counter, false) . '>' . $pinterest_counter_key . '</option>';
         }
         $pinterest_buttons_content .= '</select></p>';
         $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-pinterest', 'Pinterest Button Settings', $pinterest_buttons_content);
+
+        // Pinterest
+        $pocket_buttons_content .= '<p>' . __("Choose where to show the Pocket count") . ':<br />
+                    <select name="pocket_counter">';
+        foreach (array('Above the button'=>'vertical"', 'Beside the button'=>'horizontal', 'Not shown'=>'none') as $pocket_counter_key=>$pocket_counter) {
+            $pocket_buttons_content .= '<option value="' . $pocket_counter . '" ' . selected($socialize_settings['pocket_counter'], $pocket_counter, false) . '>' . $pocket_counter_key . '</option>';
+        }
+        $pocket_buttons_content .= '</select></p>';
+        $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-pocket', 'Pocket Button Settings', $pocket_buttons_content);
         
         // Buffer
         $buffer_buttons_content .= '<p>' . __("Choose which Buffer button to display") . ':<br />
@@ -653,10 +665,17 @@ class SocializeAdmin {
         $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-buffer', 'Buffer Button Settings', $buffer_buttons_content);
         
         // Google Plus
-        $google_plusone_buttons_content .= '<p>' . __("Choose which Google +1 button to display") . ':<br />
+        $google_plusone_buttons_content .= '<p>' . __("Choose which size Google +1 button to display") . ':<br />
 					<select name="plusone_style">';
         foreach (array('small', 'medium', 'standard', 'tall') as $plusone_style) {
             $google_plusone_buttons_content .= '<option value="' . $plusone_style . '" ' . selected($socialize_settings['plusone_style'], $plusone_style, false) . '>' . $plusone_style . '</option>';
+        }
+        $google_plusone_buttons_content .= '</select></p>';
+        //plusone_annotation
+        $google_plusone_buttons_content .= '<p>' . __("Choose which Google +1 annotation type to display") . ':<br />
+                    <select name="plusone_annotation">';
+        foreach (array('inline'=>'inline', 'none'=>'', 'bubble'=>'bubble') as $plusone_annotation_key=>$plusone_annotation) {
+            $google_plusone_buttons_content .= '<option value="' . $plusone_annotation . '" ' . selected($socialize_settings['plusone_annotation'], $plusone_annotation, false) . '>' . $plusone_annotation_key . '</option>';
         }
         $google_plusone_buttons_content .= '</select></p>';
         $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-google-plusone', 'Google +1 Button Settings', $google_plusone_buttons_content);
@@ -669,15 +688,6 @@ class SocializeAdmin {
         }
         $linkedin_buttons_content .= '</select></p>';
         $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-linkedin', 'LinkedIn Button Settings', $linkedin_buttons_content);
-        
-        // Digg
-        $digg_buttons_content .= '<p>' . __("Choose which Digg button to display") . ':<br />
-					<select name="digg_size">';
-        foreach (array('Wide' => 'DiggWide', 'Medium' => 'DiggMedium', 'Compact' => 'DiggCompact', 'Icon' => 'DiggIcon') as $digg_size => $digg_size_value) {
-            $digg_buttons_content .= '<option value="' . $digg_size_value . '" ' . selected($socialize_settings['digg_size'], $digg_size_value, false) . '>' . $digg_size . '</option>';
-        }
-        $digg_buttons_content .= '</select></p>';
-        $wrapped_content .= self::socialize_postbox('socialize-settings-buttons-digg', 'Digg Button Settings', $digg_buttons_content);
 
         self::socialize_admin_wrap('Socialize: Button Settings', $wrapped_content);
     }
@@ -771,9 +781,6 @@ class SocializeAdmin {
                 if (isset($_POST['plusone_style'])) {
                     $socialize_settings['plusone_style'] = $_POST['plusone_style'];
                 }
-                if (isset($_POST['digg_size'])) {
-                    $socialize_settings['digg_size'] = $_POST['digg_size'];
-                }
                 if (isset($_POST['yahoo_badgetype'])) {
                     $socialize_settings['yahoo_badgetype'] = $_POST['yahoo_badgetype'];
                 }
@@ -785,6 +792,9 @@ class SocializeAdmin {
                 }
                 if (isset($_POST['buffer_counter'])) {
                     $socialize_settings['buffer_counter'] = $_POST['buffer_counter'];
+                }
+                if (isset($_POST['pocket_counter'])) {
+                    $socialize_settings['pocket_counter'] = $_POST['pocket_counter'];
                 }
 
                 echo "<div id=\"updatemessage\" class=\"updated fade\"><p>Socialize settings updated.</p></div>\n";
@@ -839,6 +849,7 @@ class SocializeAdmin {
         $default_content .= '<p>
             <input type="submit" name="socialize_option_submitted" class="button-primary" value="Save Changes" />
             <span class="socialize-warning">
+                <strong>Warning!</strong> The following button will update all posts, new and old, with your new default button settings. Use the dropdown to just update buttons, call to action text or both.<br />
                 <select name="socialize_default_type">';
         foreach (array('Buttons and Call to Action' => 'buttons/cta', 'Buttons' => 'buttons', 'Call to Action' => 'cta') as $socialize_default_name => $socialize_default_type) {
             $default_content .= '<option value="' . $socialize_default_type . '">' . $socialize_default_name . '</option>';
@@ -1024,7 +1035,7 @@ class SocializeAdmin {
                 </h2>
                 <form method="post" action="">
                     <div id="dashboard-widgets" class="metabox-holder">
-                        <div class="postbox-container" style="width:60%;">
+                        <div class="postbox-container" id="socialize-settings-container">
                             <div class="meta-box-sortables ui-sortable">
         <?php
         echo $content;
@@ -1034,7 +1045,7 @@ class SocializeAdmin {
                                 </p>
                             </div>
                         </div>
-                        <div class="postbox-container" style="width:40%;">
+                        <div class="postbox-container" id="socialize-sidebar-container">
                             <div class="meta-box-sortables ui-sortable">
         <?php
         echo self::socialize_show_donate();

@@ -81,7 +81,7 @@
 	width:16px;
 	background-position:-48px 0px; /* works */
 }
-#socialize-settings-buttons-digg div.socialize-sm-icon, .socialize-settings-buttons-digg-icon{
+#socialize-settings-buttons-pocket div.socialize-sm-icon, .socialize-settings-buttons-pocket-icon{ 
 	width:16px;
 	background-position:-16px 0px; /* works */
 }
@@ -118,11 +118,36 @@ table#metrics-table tr:nth-child(2n){
     border-width: 1px;
     border-style: solid;
     padding: 10px;
-    margin-left: 20px;
+    display: block;
+    margin: 0;
+	margin-top: 20px;
 }
 .socialize-admin p label {
     margin: 0px 20px 0px 0px;
 }
 .socialize-admin p label input {
     margin-left: 10px;
+}
+#socialize-donate .socialize-coinbase {
+	text-align: center;
+}
+#socialize-donate .inside ul {
+	text-align: center;
+}
+#socialize-donate .inside ul > li {
+	width: 100%;
+	padding: 10px;
+	display: inline;
+	line-height: 3em;
+}
+#dashboard-widgets #socialize-settings-container{
+	width: 60%;
+}
+#dashboard-widgets #socialize-sidebar-container{
+	width: 40%;
+}
+@media only screen and (max-device-width: 480px) {
+	#dashboard-widgets #socialize-settings-container, #dashboard-widgets #socialize-settings-container{
+	width: 100%;
+}
 }

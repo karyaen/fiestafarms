@@ -139,49 +139,23 @@ class SocializeServices {
                     $socialize_settings = socializeWP::get_options();
                 }
                 $plusone_style = $socialize_settings['plusone_style'];
+                $plusone_annotation = $socialize_settings['plusone_annotation'];
                 break;
             case "official":
                 $plusone_style = $service_options['plusone_style'];
+                $plusone_annotation = $service_options['plusone_annotation'];
                 break;
         }
 
         self::enqueue_js('plus-one-button', SOCIALIZE_URL . "frontend/js/plusone.js", $socialize_settings);
-        $buttonCode = '<g:plusone size="' . $plusone_style . '" href="' . get_permalink() . '"></g:plusone>';
-        $buttonCode = apply_filters('socialize-plusone', $buttonCode);
-        return $buttonCode;
-    }
 
-    // Create Digg Button
-    function createSocializeDigg($service = "", $service_options = array(), $socialize_settings = null) {
-        switch ($service) {
-            case "":
-                if (!isset($socialize_settings)) {
-                    $socialize_settings = socializeWP::get_options();
-                }
-                $digg_size = $socialize_settings['digg_size'];
-                break;
-            case "official":
-                $digg_size = $service_options['digg_size'];
-                break;
+        $buttonCode = '<div class="g-plusone" data-size="' . $plusone_style . '" data-href="' . get_permalink() . '"';
+        if(!empty($plusone_annotation)){
+            $buttonCode .=' data-annotation="'.$plusone_annotation.'"';
         }
+        $buttonCode .='></div>';
 
-        $inlinescript =
-                '<script type="text/javascript">';
-        $inlinescript .=
-                "<!-- 
-		(function() {
-		var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-		s.type = 'text/javascript';
-		s.async = true;
-		s.src = 'http://widgets.digg.com/buttons.js';
-		s1.parentNode.insertBefore(s, s1);
-		})();
-		//-->
-		</script>";
-        self::enqueue_script($inlinescript);
-        $buttonCode =
-                '<a class="DiggThisButton ' . $digg_size . '" href="http://digg.com/submit?url=' . urlencode(get_permalink()) . '"></a>';
-        $buttonCode = apply_filters('socialize-digg', $buttonCode);
+        $buttonCode = apply_filters('socialize-plusone', $buttonCode);
         return $buttonCode;
     }
 
@@ -417,7 +391,6 @@ class SocializeServices {
                 break;
         }
         self::enqueue_script('<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>');
-        //self::enqueue_js('pinterest-button', 'http://assets.pinterest.com/js/pinit.js', $socialize_settings);
 
         $buttonCode = '<a href="http://pinterest.com/pin/create/button/?url=' . urlencode(get_permalink()) . '&';
         if (has_post_thumbnail()) {
@@ -426,9 +399,38 @@ class SocializeServices {
             $buttonCode .= 'media=' . urlencode($post_thumbnail);
         }
         $buttonCode .= '&description=' . urlencode(get_the_title());
-        $buttonCode .= '" class="pin-it-button" count-layout="' . $pinterest_counter . '"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>';
+        $buttonCode .= '" data-pin-do="buttonPin" data-pin-config="' . $pinterest_counter . '" data-pin-height="28"><img border="0" src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_28.png" title="Pin It" /></a>';
+
+        if($pinterest_counter == "above"){
+            $buttonCode = '<div style="margin-top:40px;">' . $buttonCode . '</div>';
+        }
 
         $buttonCode = apply_filters('socialize-pinterest', $buttonCode);
+        return $buttonCode;
+    }
+
+    // Create Pocket button
+    function createSocializePocket($service = "", $service_options = array(), $socialize_settings = null) {
+        if (!isset($socialize_settings)) {
+            $socialize_settings = socializeWP::get_options();
+        }
+        global $post;
+        switch ($service) {
+            case "":
+                if (!isset($socialize_settings)) {
+                    $socialize_settings = socializeWP::get_options();
+                }
+                $pocket_counter = $socialize_settings['pocket_counter'];
+                break;
+            case "official":
+                $pocket_counter = $service_options['pocket_counter'];
+                break;
+        }
+
+        $buttonCode = '<a data-pocket-label="pocket" data-pocket-count="' . $pocket_counter . '" data-save-url="' . urlencode(get_permalink()) .'" class="pocket-btn" data-lang="en"></a>';
+        $buttonCode .= '<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>';
+
+        $buttonCode = apply_filters('socialize-pocket', $buttonCode);
         return $buttonCode;
     }
     
@@ -499,11 +501,6 @@ class SocializeServices {
                 'action' => 12, 
                 'callback' => array(__CLASS__, 'createSocializeFacebook')
             ),
-            'Digg' => array(
-                'inline' => 3,
-                'action' => 13, 
-                'callback' => array(__CLASS__, 'createSocializeDigg')
-            ),
             'Sphinn' => array(
                 'inline' => 4,
                 'action' => 14, 
@@ -548,6 +545,11 @@ class SocializeServices {
                 'inline' => 9,
                 'action' => 19, 
                 'callback' => array(__CLASS__, 'createSocializeBuffer')
+            ),
+            'Pocket' => array(
+                'inline' => 28,
+                'action' => 29, 
+                'callback' => array(__CLASS__, 'createSocializePocket')
             )
         );
         socializeWP::$socialize_services = apply_filters('socialize-get_services', $socialize_services);

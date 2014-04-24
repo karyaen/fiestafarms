@@ -3,7 +3,7 @@
   Plugin Name: Socialize
   Plugin URI: http://www.jonbishop.com/downloads/wordpress-plugins/socialize/
   Description: Adds actionable social sharing buttons to your site
-  Version: 2.2.3
+  Version: 2.3
   Author: Jon Bishop
   Author URI: http://www.jonbishop.com
   License: GPL2
@@ -71,7 +71,7 @@ class socializeWP {
         if (!is_array($tmp)) {
             $tmp = array(
                 "socialize_installed" => "on",
-                "socialize_version" => "26",
+                "socialize_version" => "27",
                 "socialize_alert_bg" => "#FFEAA8",
                 "socialize_alert_border_size" => "2px",
                 "socialize_alert_border_style" => "solid",
@@ -113,6 +113,7 @@ class socializeWP {
                 "reddit_bordercolor" => "",
                 "su_type" => "5",
                 "buzz_style" => "normal-count",
+                "plusone_annotation" => "",
                 "plusone_style" => "tall",
                 "digg_size" => "DiggMedium",
                 "yahoo_badgetype" => "square",
@@ -129,8 +130,20 @@ class socializeWP {
                 "buffer_counter" => "vertical",
                 "fb_sendbutton" => "false",
                 "socialize_button_display"  => "in",
-                "socialize_out_margin" => "-105"
+                "socialize_out_margin" => "-105",
+                "pocket_counter"=>"vertical"
             );
+            update_option('socialize_settings10', $tmp);
+        }
+        // 2.3 update
+        if (in_array($tmp['pinterest_counter'], array('vertical', 'horizontal'))){
+            if($tmp['pinterest_counter'] == 'horizontal'){
+                $tmp['pinterest_counter'] = 'beside';
+            } else {
+                $tmp['pinterest_counter'] = 'above';
+            }
+            $tmp['plusone_annotation'] = '';
+            $tmp['pocket_counter'] = 'vertical';
             update_option('socialize_settings10', $tmp);
         }
         // 2.2 update

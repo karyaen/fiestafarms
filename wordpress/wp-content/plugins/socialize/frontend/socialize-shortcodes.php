@@ -12,7 +12,7 @@ function socialize_shortcode( $atts ) {
                 return SocializeServices::createSocializeFacebook();
                 break;
             case 'digg':
-                return SocializeServices::createSocializeDigg();
+                return ''; /* Leaving for backward compat */
                 break;
             case 'sphinn':
                 return SocializeServices::createSocializeSphinn();
@@ -40,6 +40,9 @@ function socialize_shortcode( $atts ) {
                 break;
             case 'pinterest':
                 return SocializeServices::createSocializePinterest();
+                break;
+            case 'pocket':
+                return SocializeServices::createSocializePocket();
                 break;
         }
 }
