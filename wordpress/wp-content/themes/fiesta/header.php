@@ -20,10 +20,6 @@
 <meta property="og:site_name" content="Fiesta Farms"/>
 <meta property="og:description" content="Fiesta Farms is Toronto's largest independently owned grocery store. We're pioneers and leaders in helping people reflect their values with a shopping cart."/>
 
-<!--
-<link rel="stylesheet" href="http://fiestafarms.ca/wp-content/themes/fiesta/animate.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
--->
 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
@@ -49,14 +45,7 @@ wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplayli
         jQuery("ul.apsframes").ytplaylist({autoPlay: false, holderId: 'apsvideo', playerHeight: '197', playerWidth: '335'});
     });
 </script>
-<script type='text/javascript'>
-(function (d, t) {
-  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-  bh.type = 'text/javascript';
-  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=11b84956-e5af-4b72-9c16-ec77484594b0';
-  s.parentNode.insertBefore(bh, s);
-  })(document, 'script');
-</script>
+
 </head>
 <?php
     global $is_apron;
@@ -145,20 +134,6 @@ wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplayli
 </div>
 <?php } ?>
 
-  
-<?php
-/*
-if (is_front_page()) {
-    
-    echo "<div id=\"home-intro\" class=\"center_container\">\n";
-    
-  	if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Home Intro Block') ) : endif;
-
-    echo "</div>";
-    
-}
-*/
-?>
 <div id="top_navigation">
   <div class="center_container">
     <ul id="main_sections">
@@ -170,8 +145,6 @@ if (is_front_page()) {
   <li<?php if (is_page('now-hiring')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/now-hiring">Now Hiring</a></li>
 	<li class="fiestagardens" <?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a style="color: #a2bf37; font-weight:bold;" href="<?php bloginfo('url') ?>/category/garden">Fiesta Gardens</a></li>
 	
-      <?php /* wp_list_pages("title_li=&depth=1&exclude=2,658,1552,1554,4661,5562"); * /?>
-	<?php /* wp_list_categories("include=54,7&title_li=" ); */?> 
      
     </ul>
     <ul id="secondary_sections">
