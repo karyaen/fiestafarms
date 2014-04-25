@@ -20,10 +20,10 @@
 <meta property="og:site_name" content="Fiesta Farms"/>
 <meta property="og:description" content="Fiesta Farms is Toronto's largest independently owned grocery store. We're pioneers and leaders in helping people reflect their values with a shopping cart."/>
 
-
+<!--
 <link rel="stylesheet" href="http://fiestafarms.ca/wp-content/themes/fiesta/animate.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
-
+-->
 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
