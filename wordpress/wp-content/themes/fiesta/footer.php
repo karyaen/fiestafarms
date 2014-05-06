@@ -20,6 +20,9 @@
 	<li<?php if (is_page('Philosphy')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/philosophy">Philosophy</a></li>
 	<li<?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/garden">Fiesta Garden</a></li>
 	<li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
+  <li<?php if (is_page('Accessibility')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/accessibility-policy">Accessibility</a></li>
+
+      
       <?php /*wp_list_pages("title_li=&depth=1&exclude=4661,1554,1552"); */?>
     </ul>
     <br class="clear" />
