@@ -5,15 +5,10 @@
 <div id="footer" style="background: #204824 url('<?php bloginfo('template_directory'); ?>/images/footer_bg.png') top center repeat-x;">
 <?php } ?>
 
-	<div class="center_container">
-    <!--<div class="butcher"></div>-->
-	<!--
-	<div style="background: #204824 url('http://fiestafarms.ca/wp-content/themes/fiesta/images/footer_bg.png') no-repeat;">
-	</div>
--->
+<div class="center_container">
 
-    <p class="copy">&copy; 2009 - 2011 Fiesta Farms. All Rights Reserved. Site by <a href="http://hypenotic.com">Hypenotic</a>.</p>
-    <ul class="bottom_nav">
+  <p class="copy">&copy; 2009 - 2014 Fiesta Farms. All Rights Reserved. Site by <a href="http://hypenotic.com">Hypenotic</a>.</p>
+  <ul class="bottom_nav">
 	<li<?php if (is_home('') || is_single()) {echo " class=\"current_page_item\"";} ?>><a href="/">Blog</a></li>
 	<li<?php if (is_page('Events')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/events">Events</a></li>
 	<li<?php if (is_page('Resources')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/resources">Resources</a></li>
@@ -21,10 +16,7 @@
 	<li<?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/garden">Fiesta Garden</a></li>
 	<li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
   <li<?php if (is_page('Accessibility')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/accessibility-policy">Accessibility</a></li>
-
-      
-      <?php /*wp_list_pages("title_li=&depth=1&exclude=4661,1554,1552"); */?>
-    </ul>
+</ul>
     <br class="clear" />
   </div>
 </div>
@@ -46,6 +38,13 @@
   feedback_widget_options.style = "question";
   
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+
+<script type="text/javascript" src="http://include.reinvigorate.net/re_.js"></script>
+<script type="text/javascript">
+try {
+reinvigorate.track("cke0k-79it7uf6yt");
+} catch(err) {}
 </script>
 
 <!-- Google Analytics -->

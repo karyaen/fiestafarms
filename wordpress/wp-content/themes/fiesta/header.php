@@ -46,6 +46,15 @@ wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplayli
     });
 </script>
 
+<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=dvd4ifcbxfndyij7chqo1q';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
+</script>
+
 </head>
 <?php
     global $is_apron;
