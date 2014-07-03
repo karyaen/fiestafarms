@@ -117,8 +117,9 @@ if($show_post == true):
 
     <?php include( TEMPLATEPATH . '/sharing-widgets.php' ); ?>
 
+    <!--
     <span class="categories"><span class="arrow">&#x21EA;</span> Posted in <?php the_category(', ') ?>.</span><?php the_tags(' <span class="tags">Tags: ', ', ', '.</span>'); ?>
-
+    -->
     <br class="clear" />
 
   </div>
