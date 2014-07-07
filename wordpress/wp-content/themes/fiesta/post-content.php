@@ -114,8 +114,9 @@ if($show_post == true):
 	<?php if (is_single()) { wp_link_pages(array('before' => '<br class="clear" /><p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); } ?>
 	
 	<div class="meta-data">
-
-    <?php include( TEMPLATEPATH . '/sharing-widgets.php' ); ?>
+    
+    <?php //include( TEMPLATEPATH . '/sharing-widgets.php' ); ?>
+  
 
     <!--
     <span class="categories"><span class="arrow">&#x21EA;</span> Posted in <?php the_category(', ') ?>.</span><?php the_tags(' <span class="tags">Tags: ', ', ', '.</span>'); ?>
