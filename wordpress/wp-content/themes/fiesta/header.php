@@ -101,7 +101,7 @@ wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplayli
   ?>
 
 <?php if (is_category('Garden') && !$is_apron) { ?>
-<img src="http://www.fiestafarms.ca/wp-content/themes/fiesta/images/header-gardens.jpg" style="height: 330px;">
+<img src="http://www.fiestafarms.ca/wordpress/wp-content/themes/fiesta/images/header-gardens.jpg" style="height: 330px;">
 	<div class="center_container">
 	  <div class="follow_us">
       <ul>
