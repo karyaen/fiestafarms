@@ -16,7 +16,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wp_fiesta');
+define('DB_NAME', 'db_fiesta');
 
 /** MySQL database username */
 define('DB_USER', 'wp_user');
