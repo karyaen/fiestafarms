@@ -6,6 +6,8 @@ node_modules/
 
 # Wordpress specific
 
+wordpress/
+wordpress/*
 wp-config.php
 uploads/
 upgrade/*
@@ -15,3 +17,5 @@ wp-cache-config.php
 w3tc-config/*
 cache/*
 supercache/*
+ewww/
+ewww/*
