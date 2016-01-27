@@ -1,21 +1,4 @@
 <?php
-// Async/Defer Scripts
-/*function to add async to all scripts*/
-function js_async_attr($tag){
-
-# Add async to all remaining scripts
-return str_replace( ' src', ' defer src', $tag );
-}
-add_filter( 'script_loader_tag', 'js_async_attr', 10 );
-
-/*** Remove Query String from Static Resources ***/
-function remove_cssjs_ver( $src ) {
- if( strpos( $src, '?ver=' ) )
- $src = remove_query_arg( 'ver', $src );
- return $src;
-}
-add_filter( 'style_loader_src', 'remove_cssjs_ver', 10, 2 );
-add_filter( 'script_loader_src', 'remove_cssjs_ver', 10, 2 );
 
 /**
  * If more than one page exists, return TRUE.
