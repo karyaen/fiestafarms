@@ -1,0 +1,193 @@
+.apron-section #header #toronto,
+.apron-section #header #cloud1,
+.apron-section #header #cloud2,
+.apron-section #header #cloud3,
+.apron-section #header #hill-green,
+.apron-section #header #hill-yellow-sign,
+.apron-section #header #hill-brown,
+.apron-section #header #g20-fence,
+.apron-section #header #weather1{
+    display: none;
+}
+
+.apron-section #header{
+    background-color: #392B23;
+    background-repeat: no-repeat;
+    background-image: url('../../images/Apron_header_2011.jpg');
+    background-position: center top;
+    height: 800px;
+    min-width:1000px;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.apron-section #header .center_container{
+    height: 80px;
+}
+
+.cat-item-43 a{
+    color:#6B6E42 !important;
+    font-style: italic !important;
+}
+
+#header {
+  background: #c3e5f2;
+  height: 300px;
+  width: 100%;
+  min-width: 1000px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#header div { position: absolute; }
+#header div.center_container { position: relative;height: 100%; }
+#toronto, #cloud1, #cloud2, #cloud3 {
+  background: url('../../images/fiesta_sprite-spring.png') no-repeat;
+}
+#toronto {
+  bottom: 26px;
+  left: 38%;
+  width: 487px;
+  height: 271px;
+  background-position: 0 0;
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  -ms-animation-delay: 2s;
+  -o-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+#cloud1, #cloud2, #cloud3 {
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  -ms-animation-delay: 3s;
+  -o-animation-delay: 3s;
+  animation-delay: 3s;
+}
+
+#cloud1 {
+  top: 0;
+  left: 10%;
+  width: 187px;
+  height: 230px;
+  background-position: -826px 0;
+}
+#cloud2 {
+  top: 0;
+  right: 15%;
+  width: 137px;
+  height: 191px;
+  background-position: -487px 0;
+}
+#cloud3 {
+  top: 0;
+  right: -5%;
+  width: 202px;
+  height: 272px;
+  background-position: -624px 0;
+}
+
+#weather1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 345px;
+  background: url('../../images/spring_flowers.png')/*('images/leaves-oof.png')('images/flakes1.png')('images/summer_foliage.png')*/ top center no-repeat;
+  -webkit-animation-delay: 4s;
+  -moz-animation-delay: 4s;
+  -ms-animation-delay: 4s;
+  -o-animation-delay: 4s;
+  animation-delay: 4s;
+}
+#weather2 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../images/spring_flowers2.png')/*('images/leaves.png')('images/flakes2.png')*/ 90% 0 repeat-x;
+}
+#weather3 {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../images/spring_flowers3.png')/*('images/leaves-close.png')('images/flakes3.png')*/ 120% -20px repeat-x;
+}
+
+#hill-green {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background: url('../../images/hills-all-spring.png') 60% -245px no-repeat;
+}
+#hill-yellow-sign {
+  bottom: 0;
+  left: -540px;
+  width: 1080px;
+  height: /*220px;*/ 177px;
+  background: url('../../images/hills-all-spring.png')/*('images/hills-all-winter.png')('images/hills-all-summer.png')*/ 20px 0 no-repeat;
+}
+#hill-brown {
+  bottom: 0;
+  right: -500px;
+  width: 1080px;
+  height: 68px;
+  background: url('../../images/hills-all-spring.png')/*('images/hills-all-summer.png') ('images/hills-all-winter.png')*/ 100% -177px no-repeat;
+}
+#g20-fence {
+  bottom: 0;
+  left: -500px;
+  width: 2000px;
+  height: 257px;
+  background: url('../../images/summer_fence.png') 0 100px no-repeat;
+
+}
+
+#header div.center_container .follow_us {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+}
+#header div.center_container .follow_us ul { list-style: none; }
+#header div.center_container .follow_us ul li { float: left; margin-left: 5px; }
+#header div.center_container .follow_us a {
+  display: block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: url('../../images/social_sticker_icons/64x64/sprite.png') 0 64px no-repeat;
+  text-indent: -99999em;
+}
+
+#header div.center_container .follow_us ul li.twitter a {background-position: -128px 0;}
+#header div.center_container .follow_us ul li.facebook a {background-position: -192px -64px;}
+#header div.center_container .follow_us ul li.youtube a {background-position: 0 0;}
+#header div.center_container .follow_us ul li.flickr a {background-position: -128px -64px;}
+#header div.center_container .follow_us ul li.feed a {background-position: -320px 0;}
+#header div.center_container .follow_us a:hover,
+#header div.center_container .follow_us a:active { top: -10px; }
+
+/*Apron Strings goodness*/
+
+
+#header-wrapper {
+  /*background: #c6c7aa;*/
+  width: 1200px;
+  height: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background: #f0ebdd;
+  position: relative!important;
+  z-index: 9998;
+}
+
+#header-wrapper > #half-pattern {
+  width: 1200px;
+  height: 800px;
+  background: url(../../images/apron-purple-bg.jpg);
+  padding: 25px 0;
+}

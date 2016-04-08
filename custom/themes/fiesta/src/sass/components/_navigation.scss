@@ -1,0 +1,48 @@
+
+#top_navigation {
+  background: #45352c;
+  font:normal normal normal 14px/1em Arial, sans-serif;
+  text-transform: uppercase;
+}
+#top_navigation ul {
+  display: block;
+  list-style: none;
+}
+#top_navigation ul li {
+  display: block;
+  float: left;
+}
+#top_navigation ul li a { display: block; }
+#top_navigation ul li a:link, #top_navigation ul li a:visited {padding: 15px 5px;}
+#top_navigation ul li.current_page_item a:link,
+#top_navigation ul li.current_page_item a:visited,
+#top_navigation ul li.current_page_parent a:link,
+#top_navigation ul li.current_page_parent a:visited,
+#top_navigation ul li.current_page_ancestor a:link,
+#top_navigation ul li.current_page_ancestor a:visited,
+#top_navigation ul li a:hover, #top_navigation ul li a:active {
+  padding: 15px 5px 10px;
+  text-decoration: none;
+  color: #fff;
+  border-bottom: 5px solid #d1d4ac;
+}
+
+
+.navigation {
+  border-top: 1px solid #cc9;
+  padding: 5px 0;
+  font-size: 0.8em;
+}
+.bottom_navigation {
+  font-size: 1.6em;
+  padding: 20px 0 40px;
+}
+.navigation div {
+  width: 33.3%;
+  padding: 0 5px;
+  opacity: 0.6;
+}
+.bottom_navigation div:hover, .navigation div:hover { opacity: 1; }
+.navigation div.alignright { text-align: right; }
+.navigation div a { display: block; }
+

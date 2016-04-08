@@ -1,0 +1,24 @@
+@import "../../components/neat/app/assets/stylesheets/neat-helpers";
+
+// Neat Overrides
+$grid-columns: 5;
+
+$max-width: em(960);
+
+// Major: Content centric breakpoints
+
+// Portrait
+$bp-xlarge: new-breakpoint(min-width 81em 12);
+$bp-large: new-breakpoint(min-width 50em 12);
+$bp-med: new-breakpoint(min-width 30em 12);
+$bp-small: new-breakpoint(max-width 30em 5);
+
+// Landscape
+$bp-ls-small: new-breakpoint(max-height 30em 12);
+
+// Visual Grid view
+$visual-grid: false;
+// $visual-grid: true;
+$visual-grid-color: #000;
+$visual-grid-index: front;
+$visual-grid-opacity: 0.1;

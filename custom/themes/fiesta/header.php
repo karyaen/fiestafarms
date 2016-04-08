@@ -29,8 +29,10 @@
 <?php
 $templateDir = get_bloginfo('template_directory');
 // Styles
-wp_enqueue_style('thickbox');
-wp_enqueue_style('fiestacss',get_bloginfo('stylesheet_url'),false,false,'all');
+// wp_enqueue_style('thickbox');
+// wp_enqueue_style('fiestacss',get_bloginfo('stylesheet_url'),false,false,'all');
+  wp_register_style('style', get_template_directory_uri() . '/dist/css/style.css');
+  wp_enqueue_style( 'style' );
 
 // Scripts
 if ( is_singular() ) wp_enqueue_script( 'comment-reply' );

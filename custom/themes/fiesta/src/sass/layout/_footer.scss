@@ -1,0 +1,40 @@
+
+#footer {
+  padding: 370px 0 30px;
+  /*background: #204824 url('images/footer_bg.png') top center repeat-x;*/
+  color: #828251;
+  font: normal normal normal 1.2em/1em Arial, sans-serif;
+}
+#footer .butcher {
+  width: 370px;
+  height: 270px;
+  position: absolute;
+  top: -589px;
+  left: -270px;
+  background: url('../../images/butcher.png') top left no-repeat;
+}
+#footer a:link, #footer a:visited, #footer a:hover, #footer a:active { color: #3c9745; }
+#footer .copy { float: right; font: normal normal normal 12px/1.5em Georgia, "Times New Roman", serif;}
+#footer .bottom_nav {
+  float: left;
+  list-style: none;
+  padding: 0;
+}
+#footer .bottom_nav li {
+  float: left;
+font: normal normal normal 12px/1.5em Georgia, "Times New Roman", serif;
+  padding-right: 1.5em;
+  text-transform: uppercase;
+}
+#footer .bottom_nav li.current_page_item a:link,
+#footer .bottom_nav li.current_page_item a:visited,
+#footer .bottom_nav li.current_page_item a:hover,
+#footer .bottom_nav li.current_page_item a:active,
+#footer .bottom_nav li.current_page_parent a:link,
+#footer .bottom_nav li.current_page_parent a:visited,
+#footer .bottom_nav li.current_page_parent a:hover,
+#footer .bottom_nav li.current_page_parent a:active,
+#footer .bottom_nav li.current_page_ancestor a:link,
+#footer .bottom_nav li.current_page_ancestor a:visited,
+#footer .bottom_nav li.current_page_ancestor a:hover,
+#footer .bottom_nav li.current_page_ancestor a:active { color: #828251; }

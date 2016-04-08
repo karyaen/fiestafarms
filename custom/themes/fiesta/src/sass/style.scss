@@ -1,0 +1,36 @@
+// ONE FILE TO RULE THEM ALL :)
+
+// Library
+@import "../components/normalize-scss/normalize";
+@import "../components/bourbon/app/assets/stylesheets/bourbon";
+
+//Neat Settings -- uncomment if using Neat -- must be imported before Neat
+@import "layout/grid-settings";
+@import "../components/neat/app/assets/stylesheets/neat";
+
+@import "helpers/mixins";
+@import "helpers/variables";
+
+// @import "base/reset";
+@import "base/typography";
+// @import "base/clientcustom";
+
+@import "components/buttons";
+@import "components/navigation";
+@import "components/animate";
+@import "components/shortcodes";
+@import "components/forms";
+
+@import "layout/footer";
+@import "layout/header";
+@import "layout/main";
+@import "layout/sidebar";
+@import "layout/home";
+@import "layout/about";
+@import "layout/services";
+@import "layout/blog";
+@import "layout/archive";
+@import "layout/projects";
+@import "layout/contact";
+
+

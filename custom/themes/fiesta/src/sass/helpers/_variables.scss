@@ -1,0 +1,44 @@
+$title-font: "Roboto", 'Georgia', serif;
+$p-font: 'Roboto', sans-serif;
+$main-headings: $title-font, serif;
+$lite-headings: sans-serif;
+
+$bold-font: sans-serif;
+$main-body-font: $p-font;
+
+
+//	Modular Scale
+$modular-scale-ratio: $perfect-fourth;
+$modular-scale-base: 1.3rem;
+
+// Sizes
+$base-line-height: $modular-scale-base * 1.3;
+$base-border-radius: rem(3);
+
+// Colors
+$white: 	rgba(255, 255, 255, 1);
+$black: 	rgba(0, 0, 0, 1);
+$ll-grey:	rgba(247, 247, 247, 1);
+$l-grey:	rgba(243, 241, 241, 1);
+$grey: 		rgba(160, 155, 155, 1);
+$d-grey:	rgba(114, 114, 114, 1);
+$red: 		rgba(179, 46, 37, 1);
+$l-blue:	rgba(57, 198, 244, 1);
+$m-blue:	rgba(83, 178, 168, 1);
+$d-blue:	rgba(104, 164, 186, 1);
+$green:		rgba(201, 217, 114, 1);
+$d-green:	rgba(94, 103, 48, 1);
+$copper:	rgba(208, 84, 2, 1);
+
+// Blog – Isotope Colors
+$facebook-post-bg:#DFE5F3;
+$blog-post-bg:#FBEBE0;
+$instagram-post-bg:#EBF3F8;
+
+// Buttons
+
+// Font Colors
+
+// Link Colors
+
+// Border color

@@ -1,0 +1,239 @@
+#sidebar {
+  float: right;
+  list-style: none;
+  width: 230px;
+  color: #6b6e42;
+  font-size: 14px;
+  line-height: 1.25em;
+  padding: 40px 0;
+}
+#sidebar a:link, #sidebar a:visited, #sidebar a:hover, #sidebar a:active { color: #b86a4d; }
+#sidebar .widget {
+  padding-bottom: 40px;
+}
+#sidebar .widget h3 {
+  padding: 0;
+  margin: 0 0 0.8em;
+  border-bottom: 1px solid #cc9;
+  height: 38px;
+  text-indent: -99999em;
+  background: url(../../images/sidebar_titles.png) 0 38px no-repeat;
+}
+#sidebar .widget h4 {
+  color: #3f4850;
+  font-size: 1.143em;
+  line-height: 1em;
+  margin: 1em 0 0.3em;
+}
+
+#sidebar .weekly-flyer h3,
+#sidebar .widget_weeklyflyer h3 { background-position: 0 0; }
+#sidebar .widget_categories h3 { background-position: 0 -38px; }
+#sidebar #sub-pages h3 { background-position: 0 -114px; }
+#sidebar .widget_twitter h3 { background-position: 63px -190px; }
+#sidebar .facebook-updates h3 { background-position: 0 -152px; }
+#sidebar .newsletter h3 { background-position: 0 -228px; }
+#sidebar .location-phone-no h3 { background-position: 0 -266px; }
+#sidebar .hours-of-operation h3 { background-position: 0 -304px; }
+
+#sidebar li ul { list-style: none; }
+
+#sidebar #sub-pages ul {
+  list-style: circle;
+  padding-left: 1.5em;
+}
+
+#sidebar #sub-pages ul li {
+  margin-bottom: 0.5em;
+}
+
+#sidebar #sub-pages ul li.current_page_item,
+#sidebar #sub-pages ul li.current_page_parent,
+#sidebar #sub-pages ul li.current_page_ancestor {
+  list-style-type: disc;
+}
+
+#sidebar #sub-pages ul li.current_page_item a:link,
+#sidebar #sub-pages ul li.current_page_item a:visited,
+#sidebar #sub-pages ul li.current_page_parent a:link,
+#sidebar #sub-pages ul li.current_page_parent a:visited,
+#sidebar #sub-pages ul li.current_page_ancestor a:link,
+#sidebar #sub-pages ul li.current_page_ancestor a:visited {
+  color: #3f4850;
+}
+
+.share-textwidget{
+    width: 229px;
+    display: block;
+    padding: 12px 3px 0px 3px;
+    font-style: italic;
+    text-align: left;
+}
+
+.share-above-textwidget{
+    width: 229px;
+    display: block;
+    padding-bottom: 15px;
+    font-style: italic;
+    font-weight: normal;
+    text-align: left;
+}
+
+#sidebar .weekly-flyer .textwidget a,
+#sidebar .widget_weeklyflyer div a {
+  display: block;
+  padding: 12px 0 0;
+}
+#sidebar .weekly-flyer .textwidget a span,
+#sidebar .widget_weeklyflyer div a span {
+  display: block;
+  background: url('../../images/sidebar_icons.png') no-repeat;
+  width: 45px;
+  height: 50px;
+  float: left;
+  margin: -17px 10px -15px -5px;
+}
+#sidebar .weekly-flyer .textwidget a:link span,
+#sidebar .weekly-flyer .textwidget a:visited span,
+#sidebar .widget_weeklyflyer div a:link span,
+#sidebar .widget_weeklyflyer div a:visited span { background-position: 0 0; }
+#sidebar .weekly-flyer .textwidget a:hover span,
+#sidebar .widget_weeklyflyer div a:hover span { background-position: -45px 0; }
+#sidebar .weekly-flyer .textwidget a:active span,
+#sidebar .widget_weeklyflyer div a:active span { background-position: -90px 0; }
+
+#sidebar .widget_categories ul li {
+  font-size: 12px;
+  padding-bottom: 1em;
+}
+#sidebar .widget_categories ul li a {
+  font-size: 18px;
+  font-style: normal;
+}
+#sidebar .widget_categories ul li ul { padding: 0.3em 0 0 1em; }
+#sidebar .widget_categories ul li ul li { padding-bottom: 0.2em; }
+#sidebar .widget_categories ul li ul li a { font-size: 14px; }
+
+#sidebar .widget_twitter { padding-top: 10px; }
+#sidebar .widget_twitter .twitter-avatar {
+  position: absolute;
+  top: -10px;
+  left: 0;
+}
+#sidebar .widget_twitter .twitter-avatar img {
+  border: 1px solid #cc9;
+  padding: 2px;
+}
+#sidebar .widget_twitter ul {
+  padding: 0.5em 0 0;
+  font-family: Arial, sans-serif;
+}
+#sidebar .widget_twitter ul li {
+  padding-bottom: 1em;
+}
+#sidebar .widget_twitter ul li .entry-content {
+  display: block;
+  background: /*#d7dab6;*/ #e7eacb;
+  border: 1px solid #cc9;  
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 5px;
+}
+#sidebar .widget_twitter ul li .entry-meta {
+  display: block;
+  font-size: 0.7em;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  padding: 5px;
+  opacity: 0.6;
+}
+#sidebar .widget_twitter ul li .entry-meta:hover { opacity:1; }
+#sidebar .widget_twitter ul li .from-meta { display: block; }
+
+#sidebar .newsletter form div {
+  padding: 10px;
+  margin-top: 1em;
+  background: /*#d7dab6;*/ #e7eacb;
+  border: 1px solid #cc9;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+#sidebar .newsletter form div label {
+  width: 60px;
+  font-style: italic;
+  color: #3f4850;
+}
+#sidebar .newsletter form div input {
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+#sidebar .newsletter form div input[type='text'] {
+  font-size: 14px;
+  padding: 4px 3px;
+  margin-bottom: 10px;
+  width: 197px;
+  background: #d1d4ac;
+  border: 1px solid #ddd;
+}
+#sidebar .newsletter form div input[type='text']:hover {
+  background: #b86a4d;
+  color: #d7dab6;
+}
+#sidebar .newsletter form div input[type='text']:focus {
+  background: #cc9;
+  color: #333;
+  cursor: text;
+}
+#sidebar .newsletter form div input[type='submit'] {
+  display: block;
+  float: right;
+  border: 0;
+  margin: 0;
+  padding: 5px;
+  background: #b86a4d; 
+  color: #d7dab6;
+  font: italic normal normal 1em/1em Georgia, serif;
+}
+#sidebar .newsletter form div input[type='submit']:hover {
+  text-decoration: underline;
+}
+
+
+#sidebar #search-3 form div {
+  padding: 10px;
+  margin-top: 1em;
+  background: /*#d7dab6;*/ #e7eacb;
+  border: 1px solid #cc9;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+#sidebar #search-3 form div input[type='submit'] {
+  display: block;
+  float: right;
+  border: 0;
+  margin: 0;
+  padding: 1px;
+  background: #b86a4d; 
+  color: #d7dab6;
+  font: italic normal normal 1em/1em Georgia, serif;
+	border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+#sidebar #search-3 form div input[type='submit']:hover {
+  text-decoration: underline;
+}
+
+#sidebar .location-hours h4 {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+#sidebar .location-hours .map { border: 1px solid #cc9; }
