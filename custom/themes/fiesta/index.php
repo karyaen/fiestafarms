@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <div id="middle">
   <div class="center_container">
-  	<div id="content" role="main">
+  	<div id="content" class="page-<?php echo the_ID() ?>" role="main">
   	
   	<?php // Exclude Flyer Category
   	if ( is_home() ) { 

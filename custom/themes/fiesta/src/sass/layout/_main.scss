@@ -12,6 +12,7 @@ body {
   font: normal normal normal 10px/1em Georgia, "Times New Roman", serif;
   background: #392b23;
 }
+
 a:link, a:visited, a:hover, a:active { color: #dfaf4d; }
 a:link, a:visited { text-decoration: none; }
 a:hover, a:active { text-decoration: underline; }
@@ -134,7 +135,11 @@ ul#apron-videos li a img:hover {
 #secondary_sections li {margin-left: 15px;}
 
 #middle { background: #d1d4ac; }
-#middle .center_container { padding: 60px 20px 100px; }
+
+#middle .center_container { 
+	padding: 60px 0 100px; 
+}
+
 #middle a:link, #middle a:visited, #middle a:hover, #middle a:active { color: #ab3a21; }
 
 #content {
@@ -148,7 +153,26 @@ ul#apron-videos li a img:hover {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  box-sizing: initial;
 }
+
+
+
+.center-container {
+	#content {
+		width: 620px;
+	}
+}
+
+
+
+
+
+#middle .center_container {
+	// padding: 40px 0;
+}
+
+
 #content p, #content ul, #content ol, #content dl, #content table {
   line-height: 1.475em;
   margin-bottom: 1.2em;
@@ -421,13 +445,13 @@ ul#apron-videos li a img:hover {
 
 
 
-.share-banner{
+.share-banner {
     width: 200px!important;
     height: 247px!important;
     background: url('../../images/apron-strings-side-banner.png') no-repeat;
 }
 
-.share-banner a{
+.share-banner a {
     position: absolute;
     top: 0;
     left: 0;
@@ -436,12 +460,12 @@ ul#apron-videos li a img:hover {
 }
 
 .share-banner a,
-.apronstring-banner a{
+.apronstring-banner a {
     text-indent: -1999px;
     overflow: hidden;
 }
 
-.apronstring-banner{
+.apronstring-banner {
     width: 237px;
     height: 420px;
     background: url('../../images/aprons-2012.png') no-repeat!important;
@@ -453,7 +477,7 @@ ul#apron-videos li a img:hover {
     
 }
 
-.apronstring-banner:hover{
+.apronstring-banner:hover {
     border: 3px solid #ab3a21;
     background-position: bottom!important;
 }
@@ -462,7 +486,7 @@ ul#apron-videos li a img:hover {
     background: url('images/Apron_Badge3_r.png') no-repeat;
 }*/
 
-.apronstring-banner a{
+.apronstring-banner a {
     /*position: absolute;
     top: 0;
     left: 0;
@@ -472,7 +496,7 @@ ul#apron-videos li a img:hover {
 }
 
 .category-stories,
-.category-recipes-apron-strings-food{
+.category-recipes-apron-strings-food {
     top: 15px;
     background-position: left top;
     background: url('../../images/Apron_RecipeCard3.png') no-repeat;
@@ -489,11 +513,11 @@ ul#apron-videos li a img:hover {
     position: relative;
 }
 
-#yt_holder{
+#yt_holder {
     z-index: 1000;
 }
 
-#apron_badge{
+#apron_badge {
     height: 160px;
     width: 513px;
     background: url('../../images/Apron_Badge_2011.png') no-repeat;
@@ -503,11 +527,11 @@ ul#apron-videos li a img:hover {
     position: absolute;
 }
 
-#apron_badge h1{
+#apron_badge h1 {
     display: none;
 }
 
-#apron_badge a{
+#apron_badge a {
     position: absolute;
     top: 0;
     left: 0;
@@ -515,7 +539,7 @@ ul#apron-videos li a img:hover {
     height: 100px;
 }
 
-#apsvideo{
+#apsvideo {
     position: absolute;
     top: 232px;
     left: 135px;
@@ -523,14 +547,14 @@ ul#apron-videos li a img:hover {
 
 .apsframes li { display: block; overflow: hidden; width: auto; height: auto; }
 
-#video_thumb1{
+#video_thumb1 {
     position: absolute;
     list-style: none;
     top: 328px;
     left: 673px;
 }
 
-#video_thumb1 a img{
+#video_thumb1 a img {
     border: none;
     width:  65px;
     height: 45px;
@@ -543,7 +567,7 @@ ul#apron-videos li a img:hover {
     left: 643px;
 }
 
-#video_thumb2 a img{
+#video_thumb2 a img {
     border: none;
     width:  65px;
     height: 47px;
@@ -556,33 +580,33 @@ ul#apron-videos li a img:hover {
     left: 844px;
 }
 
-#video_thumb3 a img{
+#video_thumb3 a img {
     border: none;
     width:  65px;
     height: 49px;
 }
 
-#video_thumb4{
+#video_thumb4 {
     position: absolute;
     list-style: none;
     top: 372px;
     left: 821px;
 }
 
-#video_thumb4 a img{
+#video_thumb4 a img {
     border: none;
     width:  65px;
     height: 45px;
 }
 
-#video_thumb5{
+#video_thumb5 {
     position: absolute;
     list-style: none;
     top: 435px;
     left: 856px;
 }
 
-#video_thumb5 a img{
+#video_thumb5 a img {
     border: none;
     width:  65px;
     height: 47px;
@@ -614,9 +638,11 @@ ul#apron-videos li a img:hover {
 	border-radius: .3em;
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-	box-shadow: 0 1px 2px rgba(0,0,0,.1);}
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
 	
 .fiestagardens { /*Fiesta Gardens Icon*/
 	background:url('../../images/fiesta-gardens-icon.png') no-repeat;
 	background-position: 0 12px;
-	padding-left: 19px; }	
+	padding-left: 19px; 
+}	
