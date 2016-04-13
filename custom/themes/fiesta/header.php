@@ -118,7 +118,7 @@ src="https://www.facebook.com/tr?id=482947628545053&ev=PageView&noscript=1"
   ?>
 
 <?php if (is_category('Garden') && !$is_apron) { ?>
-<img src="http://www.fiestafarms.ca/wordpress/wp-content/themes/fiesta/images/header-gardens.jpg" style="height: 330px;">
+<img src="http://www.fiestafarms.ca/custom/themes/fiesta/images/header-gardens.jpg" style="height: 330px;">
 	<div class="center_container">
 	  <div class="follow_us">
       <ul>
