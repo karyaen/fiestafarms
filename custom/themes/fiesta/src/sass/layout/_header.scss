@@ -93,7 +93,7 @@
   left: 0;
   width: 100%;
   height: 345px;
-  background: url('../../images/spring_flowers.png')/*('images/leaves-oof.png')('images/flakes1.png')('images/summer_foliage.png')*/ top center no-repeat;
+  background: url('../../images/leaves-oof.png')/*('images/leaves-oof.png')('images/flakes1.png')('images/summer_foliage.png')*/ top center no-repeat;
   -webkit-animation-delay: 4s;
   -moz-animation-delay: 4s;
   -ms-animation-delay: 4s;
@@ -105,7 +105,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../../images/spring_flowers2.png')/*('images/leaves.png')('images/flakes2.png')*/ 90% 0 repeat-x;
+  background: url('../../images/leaves.png')/*('images/leaves.png')('images/flakes2.png')*/ 90% 0 repeat-x;
 }
 #weather3 {
   display: none;
@@ -121,21 +121,21 @@
   left: 0;
   width: 100%;
   height: 45px;
-  background: url('../../images/hills-all-spring.png') 60% -245px no-repeat;
+  background: url('../../images/hills-all.png') 60% -245px no-repeat;
 }
 #hill-yellow-sign {
   bottom: 0;
   left: -540px;
   width: 1080px;
   height: /*220px;*/ 177px;
-  background: url('../../images/hills-all-spring.png')/*('images/hills-all-winter.png')('images/hills-all-summer.png')*/ 20px 0 no-repeat;
+  background: url('../../images/hills-all.png')/*('images/hills-all-winter.png')('images/hills-all-summer.png')*/ 20px 0 no-repeat;
 }
 #hill-brown {
   bottom: 0;
   right: -500px;
   width: 1080px;
   height: 68px;
-  background: url('../../images/hills-all-spring.png')/*('images/hills-all-summer.png') ('images/hills-all-winter.png')*/ 100% -177px no-repeat;
+  background: url('../../images/hills-all.png')/*('images/hills-all-summer.png') ('images/hills-all-winter.png')*/ 100% -177px no-repeat;
 }
 #g20-fence {
   bottom: 0;
