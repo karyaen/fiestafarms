@@ -154,7 +154,7 @@ src="https://www.facebook.com/tr?id=482947628545053&ev=PageView&noscript=1"
       <br class="clear" />
     </div>
   </div>
-  <div id="weather1" class="animated fadeInUpBig"></div>
+  <div id="weather1" class="animated fadeInDownBig"></div>
   <a href="http://www.fiestafarms.ca"><div id="weather2"></div></a>
   <div id="weather3"></div>
 </div>
