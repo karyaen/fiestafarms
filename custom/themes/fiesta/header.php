@@ -44,21 +44,18 @@
 $templateDir = get_bloginfo('template_directory');
 wp_register_style('style', get_template_directory_uri() . '/dist/css/style.css');
 wp_enqueue_style( 'style' );
-
 // Scripts
 if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
 wp_enqueue_script('thickbox');
 wp_enqueue_script('fiestajs',"$templateDir/js/fiesta.js");
 wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplaylist.js");
 ?>
-
 <?php wp_head(); ?>
 <script type="text/ecmascript">
     jQuery(function() {
         jQuery("ul.apsframes").ytplaylist({autoPlay: false, holderId: 'apsvideo', playerHeight: '197', playerWidth: '335'});
     });
 </script>
-
 <script type='text/javascript'>
 (function (d, t) {
   var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -67,7 +64,6 @@ wp_enqueue_script('jquery.youtubeplaylist',"$templateDir/js/jquery.youtubeplayli
   s.parentNode.insertBefore(bh, s);
   })(document, 'script');
 </script>
-
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -82,15 +78,10 @@ fbq('track', "PageView");</script>
 src="https://www.facebook.com/tr?id=482947628545053&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
-
 </head>
-
 <?php if (is_page_template('page-apronstrings.php')) { ?>
   <body class="apron-strings-body">
-
 <?php } else { ?>
-
-
   <?php
       global $is_apron;
       global $curr_page;
@@ -175,24 +166,25 @@ src="https://www.facebook.com/tr?id=482947628545053&ev=PageView&noscript=1"
     <a href="http://www.fiestafarms.ca"><div id="weather2"></div></a>
     <div id="weather3"></div>
   </div>
-  <?php } ?>
+  <?php }
+  } ?>
 
-<div id="top_navigation">
-  <div class="center_container">
-    <ul id="main_sections">
-	<li<?php if (is_home('') || is_single()) {echo " class=\"current_page_item\"";} ?>><a href="/">Blog</a></li>
-	<li<?php if (is_page('Events')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/events">Events</a></li>
-	<li<?php if (is_page('Resources')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/resources">Resources</a></li>
-	<li<?php if (is_page('Philosphy')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/philosophy">Philosophy</a></li>
-	<li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
-  <li<?php if (is_page('now-hiring-2')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/now-hiring-2">Now Hiring!</a></li>
-	<li class="fiestagardens" <?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a style="color: #a2bf37; font-weight:bold;" href="<?php bloginfo('url') ?>/category/garden">Fiesta Gardens</a></li>
-	
-     
-    </ul>
-    <ul id="secondary_sections">
-      <?php wp_list_pages("title_li=&depth=1&include=2,658"); ?>   
-    </ul>
-    <br class="clear" />
+  <div id="top_navigation">
+    <div class="center_container">
+      <ul id="main_sections">
+    <li<?php if (is_home('') || is_single()) {echo " class=\"current_page_item\"";} ?>><a href="/">Blog</a></li>
+    <li<?php if (is_page('Events')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/events">Events</a></li>
+    <li<?php if (is_page('Resources')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/resources">Resources</a></li>
+    <li<?php if (is_page('Philosphy')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/philosophy">Philosophy</a></li>
+    <li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
+    <li<?php if (is_page('now-hiring-2')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/now-hiring-2">Now Hiring!</a></li>
+    <li class="fiestagardens" <?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a style="color: #a2bf37; font-weight:bold;" href="<?php bloginfo('url') ?>/category/garden">Fiesta Gardens</a></li>
+    
+       
+      </ul>
+      <ul id="secondary_sections">
+        <?php wp_list_pages("title_li=&depth=1&include=2,658"); ?>   
+      </ul>
+      <br class="clear" />
+    </div>
   </div>
-</div>
