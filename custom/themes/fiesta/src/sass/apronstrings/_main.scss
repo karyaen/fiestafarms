@@ -1,0 +1,51 @@
+.apron-strings-body {
+
+	overflow-x: hidden;
+	background: $white;	
+	
+	
+	.main-wrapper {
+		// max-width: 1024px;
+	    @include media($bp-large) {
+	        margin: 0 auto;
+	        @include outer-container;
+	        display: flex;
+	        justify-content: space-between;
+	    }
+	}
+
+	section {
+	  padding: 40px;
+	}
+
+	a {
+	  text-decoration: none;
+	  color: $green;
+	  transition: all 0.5s;
+	  &:hover {
+	    color: lighten( $green, 10% );
+	  }
+	}
+
+	.news-submit {
+	  background-color: $lightgrey;
+	  @include flexboxcenter;
+	  @include media($bp-large) {
+	      min-height: 80vh;
+	  }
+	}
+
+	article.submit-story {
+	    margin: 0 20%;
+	    text-align: center;
+	    h1 {
+
+	    }
+	    .textwidget {
+	        font-size: modular-scale(1);
+	        line-height: modular-scale(2);
+	        margin: 25px 0;
+	    }
+	}
+ 
+}

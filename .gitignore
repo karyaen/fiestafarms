@@ -3,6 +3,8 @@
 .sass-cache/
 robots.txt
 node_modules/
+sitemap.xml
+sitemap.xml.gz
 
 # Wordpress specific
 

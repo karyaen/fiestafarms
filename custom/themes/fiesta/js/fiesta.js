@@ -18,11 +18,11 @@ $(document).ready(function(){
 }
 
 	preload([
-	    'http://fiestafarms.ca/wp-content/themes/fiesta/images/Hussein_r.jpg',
-	    'http://fiestafarms.ca/wp-content/themes/fiesta/images/Tony_r.jpg',
-	    'http://fiestafarms.ca/wp-content/themes/fiesta/images/David_r.jpg',
-	    'http://fiestafarms.ca/wp-content/themes/fiesta/images/Phil_r.jpg',
-	    'http://fiestafarms.ca/wp-content/themes/fiesta/images/Leo_r.jpg'
+	    'http://fiestafarms.ca/custom/themes/fiesta/images/Hussein_r.jpg',
+	    'http://fiestafarms.ca/custom/themes/fiesta/images/Tony_r.jpg',
+	    'http://fiestafarms.ca/custom/themes/fiesta/images/David_r.jpg',
+	    'http://fiestafarms.ca/custom/themes/fiesta/images/Phil_r.jpg',
+	    'http://fiestafarms.ca/custom/themes/fiesta/images/Leo_r.jpg'
 	]);
 
 	var videos = [

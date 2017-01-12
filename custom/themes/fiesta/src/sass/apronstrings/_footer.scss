@@ -1,0 +1,156 @@
+.apron-strings-body { 
+
+	footer {
+		background-color: $black;
+		a {
+			text-decoration: none;
+			color: $black;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+	}
+
+	footer.interview-cred {
+		background: $white;
+		display: flex;
+		flex-direction: column;
+		margin-top: 50px;
+		p {
+			font-family: "Open Sans",serif;
+			margin: 10px auto;
+		}
+	}
+
+	.interview-holder {
+		z-index: 90;
+	}
+
+	.flickity-viewport {
+		width: 100%;
+		// display: flex;
+		// justify-content: center;
+		// align-items: center;
+	}
+
+	footer.links {
+
+	}
+
+	.interview-cred__more {
+		display: flex;
+		justify-content: space-around;
+		margin: 20px 0;
+		@include media($bp-small) {
+			flex-direction: column;
+		}
+		article {
+			flex: 1 0 33.33%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+	}
+
+	article.interview-cred__more--mid {
+		border-left: 2px solid rgba(0,0,0,0.2);
+		border-right: 2px solid rgba(0,0,0,0.2);
+		flex-direction: column;
+	}
+
+	div.norm_row.sfsi_wDiv {
+		position: relative !important;
+	}
+
+	.interview-cred__related {
+		display: flex;
+		@include media($bp-small) {
+			flex-direction: column;
+		}
+		.related__credits {
+			padding: 40px;
+			flex: 1 0 33.5%;
+			// background-color: grey;
+			// height: 500px;
+			@include media($bp-small) {
+				flex: 1 0 auto;
+			}
+		}
+		.related__interviews {
+			padding: 40px;
+			// background-color: darkgrey;
+			flex: 1 0 66.5%;
+			// height: 500px;
+			display: flex;
+			flex-direction: column;
+			.interview-holder {
+				display: flex;
+				@include media($bp-small) {
+					flex: 1 0 auto;
+					flex-direction: column;
+				}
+			}
+		}
+	}
+
+	.related {
+		flex: 1 0 auto;
+		margin: 0 10px;
+		img {
+			max-width: 300px;
+			max-height: 300px;
+		}
+		.self-title {
+			font-size: modular-scale(0, 0.8rem);
+			line-height: modular-scale(1, 0.8rem);
+			color: grey;
+		}
+		z-index: 100;
+	}
+
+	// STATIC FOOTER 
+
+	.main-footer {
+		padding: 40px;
+		h3 {
+			margin: 0;
+		}
+		ul {
+			margin-top: 0;
+			li {
+				padding: 5px 0;
+				font-family: "Open Sans",serif;
+			}
+		}
+		p {
+			font-family: "Open Sans",serif;
+		}
+		display: flex;
+		flex-direction: column;
+		.links {
+			display: flex;
+			@include media($bp-small) {
+				flex-direction: column;
+			}
+			article {
+				flex: 1 0 33.3%;
+				display: flex;
+				flex-direction: column;
+				// justify-content: center;
+				// align-items: center;
+			}
+		}
+	}
+
+	section.rights {
+		margin-top: 20px;
+		p {
+			font-size: modular-scale(0, 1rem);
+			line-height: modular-scale(1, 1rem);
+		}
+	}
+
+}

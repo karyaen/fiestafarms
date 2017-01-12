@@ -1,0 +1,170 @@
+.apron-strings-body {
+
+  // EXPAND PANELS
+  .og-expander {
+    position: absolute;
+    background: rgba(255,255,255,0.95);
+    top: auto;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 200px;
+    text-align: left;
+    // overflow: hidden;
+    display: none;
+    z-index: 90000000;
+    // color: #fff;
+    @include media($bp-large) {
+      padding: 40px 20%;
+    }
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    // box-shadow: 0px 0px 15px rgba(0,0,0, 0.6);
+  }
+
+  .og-details {
+    margin: 0 10%;
+  }
+
+  .og-expander-inner {
+    padding: 80px 0 50px;
+    height: 100%;
+    @include media($bp-large) {
+      padding: 50px 30px;
+    }
+  }
+
+  .og-close {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 20px;
+    right: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+    @include media($bp-small) {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .og-close-bottom {
+    background: rgba(0,0,0,0.5);
+    color: $white;
+    padding: 10px 15px;
+    // border-radius: 8px;
+    margin-top: 25px;
+    width: 100px;
+    text-align: center;
+  }
+
+  .og-close::before,
+  .og-close::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    height: 2px;
+    background: #000;
+    transform: rotate(45deg);
+  }
+
+  .og-close::after {
+    transform: rotate(-45deg);
+  }
+
+  .og-close:hover::before,
+  .og-close:hover::after {
+    background: #333;
+  }
+
+
+  .container.fail {
+    text-align: center;
+    h3 {
+      margin: 0 auto;
+    }
+  }
+  // THE POST
+
+  .the-post {
+    @include media($bp-small) {
+      margin-top: 25px;
+    }
+  }
+
+  .the-post a img, 
+  .the-post img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .the-post iframe {
+    @include media($bp-small) {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  ul.social-share {
+    position: absolute;
+    margin-left: -120px;
+    margin-top: 80px;
+    padding: 0;
+    padding-bottom: 25px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50px;
+      @include media($bp-small) {
+      width: 75%;
+    }
+    li {
+      margin: 5px 0;
+      background-color: $green;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      transition: all 0.5s;
+      @include display(flex);
+      @include align-items(center);
+      @include justify-content(center);
+      &:hover {
+        background-color: lighten( $green, 10% );
+      }
+    }
+    li a i {
+      font-size: modular-scale(1);
+      color: $white;
+    }
+  }
+
+
+  .sidebar__button {
+    width: 158px;
+    height: 56px;
+    background-color: $green;
+    // border-radius: 2px;
+    border: 1px solid $black;
+  }
+
+  .cta-button {
+    padding: 15px 20px;
+    font-size: modular-scale(1);
+    line-height:modular-scale(1);
+    background: $darkgreen;
+    &:hover {
+      background-color: lighten( $darkgreen, 10% );
+    }
+  }
+
+  #test-button {
+    text-transform: uppercase;
+    padding: 25px 40px;
+    border-radius: 8px;
+  }
+
+}
+

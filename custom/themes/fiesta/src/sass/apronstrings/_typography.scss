@@ -1,0 +1,47 @@
+.apron-strings-body {
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: $main-headings;
+		font-weight: 400;
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 5vw;
+		line-height: 6vw;
+	}
+
+	h2 {
+		font-size: modular-scale(4);
+		line-height: modular-scale(4, 1.1rem);
+		font-weight: 700;
+	}
+
+	h3 {
+		font-size: modular-scale(2);
+		line-height: modular-scale(3);
+	}
+
+	h4 {
+
+	}
+
+	h5 {
+
+	}
+
+	h6 {
+		
+	}
+
+	p {
+		font-family: $p-font;
+		font-size: modular-scale(0);
+		line-height: modular-scale(1, 1.15rem);
+	}
+
+	a {
+		color: $white;
+	}
+
+}
