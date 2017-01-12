@@ -197,6 +197,28 @@ src="https://www.facebook.com/tr?id=482947628545053&ev=PageView&noscript=1"
     </div>
   </div>
 
+<<<<<<< HEAD
 
 
 <?php } ?>
+=======
+<div id="top_navigation">
+  <div class="center_container">
+    <ul id="main_sections">
+	<li<?php if (is_home('') || is_single()) {echo " class=\"current_page_item\"";} ?>><a href="/">Blog</a></li>
+	<li<?php if (is_page('Events')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/events">Events</a></li>
+	<li<?php if (is_page('Resources')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/resources">Resources</a></li>
+	<li<?php if (is_page('Philosphy')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/philosophy">Philosophy</a></li>
+	<li<?php if (is_category('Video')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/category/food/video">Video</a></li>
+  <li<?php if (is_page('now-hiring-2')) {echo " class=\"current_page_item\""; }?>><a href="<?php bloginfo('url') ?>/now-hiring-2">Now Hiring!</a></li>
+	<li class="fiestagardens" <?php if (is_category('Garden')) {echo " class=\"current_page_item\""; }?>><a style="color: #a2bf37; font-weight:bold;" href="<?php bloginfo('url') ?>/category/garden">Fiesta Gardens</a></li>
+	
+     
+    </ul>
+    <ul id="secondary_sections">
+      <?php wp_list_pages("title_li=&depth=1&include=2,658"); ?>   
+    </ul>
+    <br class="clear" />
+  </div>
+</div>
+>>>>>>> a5166e789c20817b4a5b2e71d51ac19c34f5ed52
